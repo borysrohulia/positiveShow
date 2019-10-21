@@ -1,6 +1,7 @@
 <template>
     <div class="header">
         <v-toolbar id="toolbar">
+          <p>CHVO</p>
             <img src="../../assets/image/logo.png" alt="logo">
             <p v-for="(nav, index) in navs" :key="index" :id="nav.href" class="nav">{{nav.title}}</p>
             <img src="../../assets/image/hamburger.png" id="hamburger" @click="showDrawerAction()">
