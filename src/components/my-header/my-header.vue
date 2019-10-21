@@ -1,53 +1,59 @@
 <template>
     <div class="header">
         <v-toolbar id="toolbar">
-          <p>CHVO</p>
             <img src="../../assets/image/logo.png" alt="logo">
             <p v-for="(nav, index) in navs" :key="index" :id="nav.href" class="nav">{{nav.title}}</p>
-            <img src="../../assets/image/hamburger.png" id="hamburger" @click="showDrawerAction()">
+            <img src="../../assets/image/hamburger.png" id="hamburger" @click="getDrawerActio(!test)">
         </v-toolbar>
     </div>
 </template>
 <script>
+import {mapState, mapActions} from 'vuex'
 export default {
     name: 'my-header',
     data() {
         return{
-        navs: [
-        {
-          title: 'Взрослые мероприятия',
-          href: '#adultActivities'
-        },
-        {
-          title: 'Выпускной',
-          href: '#prom'
-        },
-        {
-          title: 'Декор',
-          href: '#decor'
-        },
-        {
-          title: 'Детские праздники',
-          href: '#childrenHolidays'
-        },
-        {
-          title: 'Свадьба',
-          href: '#wedding'
-        },
-        {
-          title: 'Контакты',
-          href: '#'
-        }
-      ],
+            navs: [
+                {
+                  title: 'Взрослые мероприятия',
+                  href: '#adultActivities'
+                },
+                {
+                  title: 'Выпускной',
+                  href: '#prom'
+                },
+                {
+                  title: 'Декор',
+                  href: '#decor'
+                },
+                {
+                  title: 'Детские праздники',
+                  href: '#childrenHolidays'
+                },
+                {
+                  title: 'Свадьба',
+                  href: '#wedding'
+                },
+                {
+                  title: 'Контакты',
+                  href: '#'
+                }
+            ]
         }
     },
     methods: {
-        showDrawerAction() {
-
+        ...mapActions(
+            'headerStore', [
+            'getDrawerAction'    
+        ]),
+        getDrawerActio(val) {
+            this.$store.dispatch('getDrawerAction')
         }
     },
     computed: {
-        
+        ...mapState({
+            test: state => state.headerStore.showDrawer
+        })
     }
 }
 </script>
