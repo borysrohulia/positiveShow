@@ -1,10 +1,6 @@
 <template>
 <div class="main">
-  <v-toolbar id="toolbar">
-    <h1 class="toolbar-title">Positive show</h1>
-    <p v-for="(nav, index) in navs" :key="index" :id="nav.href" class="nav">{{nav.title}}</p>
-    <img src="./assets/image/hamburger.png" id="hamburger" @click="showDrawerAction()">
-  </v-toolbar>
+  <myHeader></myHeader>
   <div class="drawer" v-if="showDrawer" @click="showDrawerAction()">
     <div class="drawer_nav">
       <p v-for="(nav, index) in navs" :key="index" :id="nav.href" class="nav-draw">{{nav.title}}</p>
@@ -33,16 +29,13 @@
         </v-carousel>
       </div>
     </div>
-    
-
-
-    <div class="footer">
-      <h1 class="footer-title">Все права очень защищены</h1>
-    </div>
+      <myFooter></myFooter>
 </div>
   
 </template>
 <script>
+import myHeader from "./components/my-header/my-header";
+import myFooter from "./components/my-footer/my-footer";
 import event from './assets/image/event.jpg';
 import corporate from './assets/image/corporate.jpg';
 import children from './assets/image/children.jpg';
@@ -57,33 +50,7 @@ import img8 from './assets/image/img8.png';
 
 export default {
   data() {
-    return {
-      navs: [
-        {
-          title: 'Взрослые мероприятия',
-          href: '#adultActivities'
-        },
-        {
-          title: 'Выпускной',
-          href: '#prom'
-        },
-        {
-          title: 'Декор',
-          href: '#decor'
-        },
-        {
-          title: 'Детские праздники',
-          href: '#childrenHolidays'
-        },
-        {
-          title: 'Свадьба',
-          href: '#wedding'
-        },
-        {
-          title: 'Контакты',
-          href: '#'
-        }
-      ],
+    return { 
       events: [
         {
           title: 'Организация мероприятий',
@@ -119,16 +86,25 @@ export default {
     showDrawerAction() {
       this.showDrawer = !this.showDrawer
     }
+  },
+  components: { 
+    myFooter,
+    myHeader
   }
 }
 </script>
 
 <style scoped>
+*{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+}
 #toolbar {
   background-color: rgb(243, 238, 228);
   display: flex;
   position: relative;
   width: 100%;
+  height: 100px !important;
+  padding: 20px !important; 
   /* justify-content: space-between; */
 }
 #toolbar>>>.v-toolbar__content {
@@ -172,7 +148,8 @@ export default {
   color: #983b45;
 }
 .event-text {
-  color: #86929f;
+  color: #86929
+f;
 }
 .drawer_nav {
   display: flex;
@@ -236,12 +213,6 @@ export default {
   width: 100%;
 }
 .galery-title {
-  color: #86929f;
-}
-.footer {
-  background-color: #f3eee4;
-}
-.footer-title {
   color: #86929f;
 }
 #galery-row {
