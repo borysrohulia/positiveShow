@@ -1,11 +1,7 @@
 <template>
 <div class="main">
   <myHeader></myHeader>
-  <div class="drawer" v-if="showDrawer" @click="showDrawerAction()">
-    <div class="drawer_nav">
-      <p v-for="(nav, index) in navs" :key="index" :id="nav.href" class="nav-draw">{{nav.title}}</p>
-    </div>
-  </div>
+  
     <div class="container">
       <div class="event-container" v-for="(event, index) in events" :key="index">
         <h1 class="event-title">{{event.title}}</h1>
@@ -79,13 +75,9 @@ export default {
         {src: img8}
       ],
       showArrows: true,
-      showDrawer: false
     }
   },
   methods: {
-    showDrawerAction() {
-      this.showDrawer = !this.showDrawer
-    }
   },
   components: { 
     myFooter,
@@ -148,30 +140,9 @@ export default {
   color: #983b45;
 }
 .event-text {
-  color: #86929
-f;
+  color: #86929f;
 }
-.drawer_nav {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  padding-top: 15px;
-  background-color: rgb(243, 238, 228);
-  top: 0px;
-  right: 0px;
-  width: 300px;
-  height: 100%;
-  max-height: 500px;
-  border-radius: 5px;
-}
-.drawer {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0,0,0, 0.5);
-}
+
 #hamburger {
   display: none;
 }

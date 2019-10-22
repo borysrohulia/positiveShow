@@ -3,12 +3,16 @@
         <v-toolbar id="toolbar">
             <img src="../../assets/image/logo.png" alt="logo">
             <p v-for="(nav, index) in navs" :key="index" :id="nav.href" class="nav">{{nav.title}}</p>
-            <img src="../../assets/image/hamburger.png" id="hamburger" @click="getDrawerActio(!test)">
+            <img src="../../assets/image/hamburger.png" id="hamburger" @click="showDrawerAction()">
         </v-toolbar>
+        <div class="drawer" v-if="showDrawer" @click="showDrawerAction()">
+          <div class="drawer_nav">
+            <p v-for="(nav, index) in navs" :key="index" :id="nav.href" class="nav-draw">{{nav.title}}</p>
+          </div>
+        </div>
     </div>
 </template>
 <script>
-import {mapState, mapActions} from 'vuex'
 export default {
     name: 'my-header',
     data() {
@@ -38,28 +42,22 @@ export default {
                   title: 'Контакты',
                   href: '#'
                 }
-            ]
+            ],
+            showDrawer: false
         }
     },
     methods: {
-        ...mapActions(
-            'headerStore', [
-            'getDrawerAction'    
-        ]),
-        getDrawerActio(val) {
-            this.$store.dispatch('getDrawerAction')
-        }
+      showDrawerAction() {
+        this.showDrawer = !this.showDrawer
+      }
     },
     computed: {
-        ...mapState({
-            test: state => state.headerStore.showDrawer
-        })
     }
 }
 </script>
 <style scoped>
 #toolbar {
-  background-color: rgb(243, 238, 228);
+  background-color: #ffe8e6;
   display: flex;
   position: relative;
   width: 100%;
@@ -115,7 +113,7 @@ export default {
   flex-direction: column;
   position: absolute;
   padding-top: 15px;
-  background-color: rgb(243, 238, 228);
+  background-color: rgb(255, 232, 230);
   top: 0px;
   right: 0px;
   width: 300px;
