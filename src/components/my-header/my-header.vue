@@ -1,15 +1,13 @@
 <template>
-    <div class="header">
-        <v-toolbar id="toolbar">
-            <img src="../../assets/image/logo.png" alt="logo">
-            <p v-for="(nav, index) in navs" :key="index" :id="nav.href" class="nav">{{nav.title}}</p>
-            <img src="../../assets/image/hamburger.png" id="hamburger" @click="showDrawerAction()">
-        </v-toolbar>
-        <div class="drawer" v-if="showDrawer" @click="showDrawerAction()">
-          <div class="drawer_nav">
-            <p v-for="(nav, index) in navs" :key="index" :id="nav.href" class="nav-draw">{{nav.title}}</p>
-          </div>
-        </div>
+    <div class="header" id="toolbar">
+      <img src="../../assets/image/logo.jpg" alt="logo" class="logo">
+      <p v-for="(nav, index) in navs" :key="index" :id="nav.href" class="nav">{{nav.title}}</p>
+      <img src="../../assets/image/hamburger.png" id="hamburger" @click="showDrawerAction()">
+      <div class="drawer" v-if="showDrawer" @click="showDrawerAction()">
+        <div class="drawer_nav">
+          <p v-for="(nav, index) in navs" :key="index" :id="nav.href" class="nav-draw">{{nav.title}}</p>
+         </div>
+      </div>
     </div>
 </template>
 <script>
@@ -19,7 +17,7 @@ export default {
         return{
             navs: [
                 {
-                  title: 'Взрослые мероприятия',
+                  title: 'Взрослые ',
                   href: '#adultActivities'
                 },
                 {
@@ -57,16 +55,20 @@ export default {
 </script>
 <style scoped>
 #toolbar {
-  background-color: #ffe8e6;
+  background-color: white;
   display: flex;
   position: relative;
   width: 100%;
-  height: 100px !important;
+  height: 130px !important;
   padding: 20px !important; 
-  /* justify-content: space-between; */
+  align-items: center;
 }
 #toolbar>>>.v-toolbar__content {
   width: 100%;
+}
+.logo {
+  width: 150px;
+  height: 100px;
 }
 .nav {
   margin-left: 100px;
@@ -123,6 +125,7 @@ export default {
 }
 .drawer {
   position: fixed;
+  z-index: 10;
   top: 0px;
   left: 0px;
   height: 100%;

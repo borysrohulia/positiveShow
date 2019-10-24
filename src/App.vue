@@ -1,40 +1,31 @@
 <template>
-<div class="main">
-  <myHeader></myHeader>
-  
-    <div class="container">
-      <div class="event-container" v-for="(event, index) in events" :key="index">
-        <h1 class="event-title">{{event.title}}</h1>
-        <img :src="event.src" alt="img" class="event-image"> 
-        <p class="event-text">{{event.text}}</p>
-      </div>
-    </div>
-    <div id="galery-row">
-      <div class="galery-container">
-        <h1 class="galery-title">Галерея</h1>
-        <v-carousel
-          show-arrows-on-hover
-          :show-arrows="showArrows"
-        >
-          <v-carousel-item
-            v-for="(photo, i) in photos"
-            :key="i"
-          >
-            <img :src="photo.src">
-          </v-carousel-item>
-        </v-carousel>
-      </div>
-    </div>
-      <myFooter></myFooter>
-</div>
-  
+  <div class="main">
+    <myHeader></myHeader>
+    <mainPart
+      class="part" 
+      :photos="photos"
+      :events="events1"
+      id="event1"
+    ></mainPart> 
+    <mainPart 
+      class="part"
+      :photos="photos"
+      :events="events2"
+      id="event2"
+    ></mainPart> 
+    <mainPart 
+      class="part"
+      :photos="photos"
+      :events="events3"
+      id="event3"
+    ></mainPart> 
+    <myFooter></myFooter>
+  </div> 
 </template>
 <script>
 import myHeader from "./components/my-header/my-header";
 import myFooter from "./components/my-footer/my-footer";
-import event from './assets/image/event.jpg';
-import corporate from './assets/image/corporate.jpg';
-import children from './assets/image/children.jpg';
+import mainPart from "./components/main-part/main-part";
 import img1 from './assets/image/img1.jpg';
 import img2 from './assets/image/img2.jpg';
 import img3 from './assets/image/img3.jpg';
@@ -43,45 +34,66 @@ import img5 from './assets/image/img5.jpg';
 import img6 from './assets/image/img6.jpeg';
 import img7 from './assets/image/img7.jpg';
 import img8 from './assets/image/img8.png';
+import event from './assets/image/event.jpg';
+import corporate from './assets/image/corporate.jpg';
+import children from './assets/image/children.jpg';
 
 export default {
+  components: { 
+    myFooter,
+    myHeader,
+    mainPart
+  },
   data() {
     return { 
-      events: [
+      photos: [
+        {
+          src: img1,
+        },
+        {
+          src: img2,
+        },
+        {
+          src: img3,
+        },
+        {
+          src: img4,
+        },
+        {
+          src: img5,
+        },
+        {
+          src: img6,
+        },
+        {
+          src: img7,
+        },
+        {
+          src: img8,
+        }
+      ],
+      events1: [
         {
           title: 'Организация мероприятий',
           src: event,
           text: 'Организация мероприятий для взрослыхю Любой масштаб, блабла блаблабла'
-        },
+        }
+      ],
+      events2: [
         {
           title: 'Организация детских мероприятий',
           src: children,
           text: 'Организация детских мероприятий и дети будут довольны, все круто супер бомба. блаблаблаблабала'
-        },
+        }
+      ],
+      events3: [
         {
           title: 'Корпоративы, свадьбы',
           src: corporate,
           text: 'Свадьбу запомнят навсегда, обращайтесь, поможем. супер круто классно офигенно'
         }
-      ],
-      photos: [
-        {src: img1},
-        {src: img2},
-        {src: img3},
-        {src: img4},
-        {src: img5},
-        {src: img6},
-        {src: img7},
-        {src: img8}
-      ],
-      showArrows: true,
+      ]
     }
-  },
-  methods: {
-  },
-  components: { 
-    myFooter,
-    myHeader
   }
 }
 </script>
@@ -90,30 +102,14 @@ export default {
 *{
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }
-#toolbar {
-  background-color: rgb(243, 238, 228);
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 100px !important;
-  padding: 20px !important; 
-  /* justify-content: space-between; */
+
+#event1 .v-window__next {
+  top: 40%;
+  right: 5px;
 }
-#toolbar>>>.v-toolbar__content {
-  width: 100%;
-}
-.nav {
-  margin-left: 100px;
-  font-size: 18px;
-  color:rgb(134, 146, 159); 
-  cursor: pointer;
-}
-.nav-draw {
-  margin-left: 10px;
-  font-size: 25px;
-  color:rgb(134, 146, 159);
-  margin-bottom: 20px;
-  cursor: pointer;
+#event1 .v-window__prev {
+  top: 40%;
+  left: 5px;
 }
 .toolbar-title {
   color: #86929f;
